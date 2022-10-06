@@ -14,9 +14,9 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@MappedSuperclass
+@MappedSuperclass //dùng cho class cha , khi đó các class entity con sẽ dùng được các thuộc tính trong này
 @EntityListeners(AuditingEntityListener.class)
-// để dùng @CreatedBy @CreatedDate....  jpa audittig hỗ trợ, cung cấp bởi spring-boot-starter-security
+// để dùng @CreatedBy @CreatedDate....  jpa auditting hỗ trợ, cung cấp bởi spring-boot-starter-security
 
 public abstract class BaseEntity {
 
@@ -43,6 +43,10 @@ public abstract class BaseEntity {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCreatedBy() {

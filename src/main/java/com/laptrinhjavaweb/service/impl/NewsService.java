@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.laptrinhjavaweb.converter.NewsConverter;
@@ -34,18 +35,21 @@ public class NewsService implements INewsService {
     public NewsDTO save(NewsDTO newsDTO) throws Exception {
         NewsEntity newsEntity = new NewsEntity();
         Optional<NewsEntity> oldNewsEntity = null;
+
         if (newsDTO.getId() != null) {    //newsDTO đã tồn tại nhờ check id
-//            NewsEntity oldNewsEntity = newsRepository.findOne(newsDTO.getId());   //=> tìm newsDTO cũ
             oldNewsEntity = newsRepository.findById(newsDTO.getId());
-            newsEntity = newsConverter.toEntity(newsDTO, oldNewsEntity);        //convert sang Entity => update
+            newsEntity = newsConverter.toEntity(newsDTO);        //convert sang Entity => update
         } else {    // newDTO chưa tồn tại
-            newsEntity = newsConverter.toEntity(newsDTO, oldNewsEntity);    //=> convert sang entity => save
+            newsEntity = newsConverter.toEntity(newsDTO);    //=> convert sang entity => save
         }
+
         CategoryEntity categoryEntity = categoryRepository.findOneByCode(newsDTO.getCategoryCode());  //từ code của newsDTO truyền vào => tìm ra được categoryEntity
+
         if (categoryEntity == null) {
             throw new Exception("Category not exsits!");
         }
         newsEntity.setCategory(categoryEntity);    //  sau khi tìm đc category => set vào newsEntity
+        newsEntity.setId(newsDTO.getId());
         newsEntity = newsRepository.save(newsEntity);        // dừng newsRepository được autowired  để lưu newsEntity vào DB
         return newsConverter.toDTO(newsEntity);        // trả về DTO
     }

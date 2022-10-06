@@ -10,7 +10,7 @@ import java.util.Optional;
 @Component
 public class NewsConverter {
 
-    public NewsEntity toEntity(NewsDTO dto, Optional<NewsEntity> oldNewEntity) {
+    public NewsEntity toEntity(NewsDTO dto) {
         NewsEntity entity = new NewsEntity();
         entity.setTitle(dto.getTitle());
         entity.setContent(dto.getContent());
@@ -36,11 +36,4 @@ public class NewsConverter {
         return dto;
     }
 
-    public NewsEntity toEntity(NewsDTO dto, NewsEntity entity) {		// update
-        entity.setTitle(dto.getTitle());
-        entity.setContent(dto.getContent());
-        entity.setShortDescription(dto.getShortDescription());
-        entity.setThumbnail(dto.getThumbnail());
-        return entity;
-    }
 }

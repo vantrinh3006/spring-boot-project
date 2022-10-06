@@ -30,9 +30,6 @@ public class NewsController {
                                                @RequestParam(value = "limit" , required = false) Integer limit) {
         NewsOutput result = new NewsOutput();
         if(page != null && limit != null) {
-            if(page - 1 < 1 ){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
-            }
             result.setPage(page);
             Pageable pageable =  PageRequest.of(page - 1,limit);
             result.setListResult(newsService.findAll(pageable));
@@ -46,13 +43,9 @@ public class NewsController {
 
     @PostMapping(value = "/news")
     public ResponseEntity<?> createNews(@RequestBody NewsDTO model) {
-//		return newService.save(model);
         try {
-//            return 	ResponseEntity.ok(newsService.save(model));
             newsService.save(model);
             return ResponseEntity.status(HttpStatus.CREATED).body(newsService.save(model));
-
-//            return (ResponseEntity<NewDTO>) ResponseEntity.status(HttpStatus.CREATED);
 
         }catch (Exception e) {
             return 	ResponseEntity.status(HttpStatus.NOT_FOUND).body(e);
@@ -61,14 +54,13 @@ public class NewsController {
 
     @PutMapping(value = "/news/{id}")
     public ResponseEntity<?> updateNew(@RequestBody NewsDTO model, @PathVariable("id") long id) {
-
         model.setId(id);
+        System.out.println(model);
         try {
-            return 	ResponseEntity.ok( newsService.save(model));
+            return ResponseEntity.status(HttpStatus.OK).body(newsService.save(model));
         }catch (Exception e) {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(e);
         }
-
     }
 
 //	@PostMapping(value = "/news")
@@ -86,4 +78,5 @@ public class NewsController {
     public void deleteNews(@RequestBody long[] ids) {
         newsService.delete(ids);
     }
+
 }
