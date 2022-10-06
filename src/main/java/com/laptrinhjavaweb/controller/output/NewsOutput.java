@@ -1,13 +1,13 @@
-package com.laptrinhjavaweb.api.output;
+package com.laptrinhjavaweb.controller.output;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.laptrinhjavaweb.dto.NewDTO;
+import com.laptrinhjavaweb.dto.NewsDTO;
 
-public class NewOutput {
+public class NewsOutput {
     private int page;
     private int totalPage;
-    private List<NewDTO> listResult = new ArrayList<>();
+    private List<NewsDTO> listResult = new ArrayList<>();
 
     public int getPage() {
         return page;
@@ -25,11 +25,11 @@ public class NewOutput {
         this.totalPage = totalPage;
     }
 
-    public List<NewDTO> getListResult() {
+    public List<NewsDTO> getListResult() {
         return listResult;
     }
 
-    public void setListResult(List<NewDTO> listResult) {
+    public void setListResult(List<NewsDTO> listResult) {
         this.listResult = listResult;
     }
 }

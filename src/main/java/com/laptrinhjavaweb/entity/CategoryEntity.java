@@ -20,7 +20,7 @@ public class CategoryEntity extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private List<NewEntity> news = new ArrayList<>();
+    private List<NewsEntity> news = new ArrayList<>();
 
     public String getCode() {
         return code;
@@ -38,11 +38,11 @@ public class CategoryEntity extends BaseEntity {
         this.name = name;
     }
 
-    public List<NewEntity> getNews() {
+    public List<NewsEntity> getNews() {
         return news;
     }
 
-    public void setNews(List<NewEntity> news) {
+    public void setNews(List<NewsEntity> news) {
         this.news = news;
     }
 }

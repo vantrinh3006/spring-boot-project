@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.dto;
 
-public class NewDTO extends AbstractDTO<NewDTO>{
+public class NewsDTO extends AbstractDTO<NewsDTO>{
     private String title;
     private String content;
     private String shortDescription;

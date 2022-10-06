@@ -2,16 +2,16 @@ package com.laptrinhjavaweb.converter;
 
 import org.springframework.stereotype.Component;
 
-import com.laptrinhjavaweb.dto.NewDTO;
-import com.laptrinhjavaweb.entity.NewEntity;
+import com.laptrinhjavaweb.dto.NewsDTO;
+import com.laptrinhjavaweb.entity.NewsEntity;
 
 import java.util.Optional;
 
 @Component
-public class NewConverter {
+public class NewsConverter {
 
-    public NewEntity toEntity(NewDTO dto, Optional<NewEntity> oldNewEntity) {
-        NewEntity entity = new NewEntity();
+    public NewsEntity toEntity(NewsDTO dto, Optional<NewsEntity> oldNewEntity) {
+        NewsEntity entity = new NewsEntity();
         entity.setTitle(dto.getTitle());
         entity.setContent(dto.getContent());
         entity.setShortDescription(dto.getShortDescription());
@@ -19,8 +19,8 @@ public class NewConverter {
         return entity;
     }
 
-    public NewDTO toDTO(NewEntity entity) {
-        NewDTO dto = new NewDTO();
+    public NewsDTO toDTO(NewsEntity entity) {
+        NewsDTO dto = new NewsDTO();
         if (entity.getId() != null) {
             dto.setId(entity.getId());
         }
@@ -36,7 +36,7 @@ public class NewConverter {
         return dto;
     }
 
-    public NewEntity toEntity(NewDTO dto, NewEntity entity) {		// update
+    public NewsEntity toEntity(NewsDTO dto, NewsEntity entity) {		// update
         entity.setTitle(dto.getTitle());
         entity.setContent(dto.getContent());
         entity.setShortDescription(dto.getShortDescription());
