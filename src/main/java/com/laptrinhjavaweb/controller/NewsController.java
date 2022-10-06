@@ -14,7 +14,7 @@ import com.laptrinhjavaweb.service.INewsService;
 @CrossOrigin
 @RestController
 @RequestMapping("/vn")
-public class NewsAPI {
+public class NewsController {
     @Autowired
     private INewsService newsService;
 
